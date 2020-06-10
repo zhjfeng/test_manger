@@ -1,3 +1,25 @@
 from django.db import models
 
 # Create your models here.
+
+class Apitest(models.Model):
+    apitestname = models.CharField('流程接口名称',max_length=64) # 流程接口，测试场景
+    apitester = models.CharField('执行人',max_length=16) # 执行人
+    apitestresult = models.BooleanField('测试结果') # 流程接口测试结果
+    create_time = models.DateTimeField('创建时间',auto_now=True) # 创建时间，自动获取# 当前时间
+
+    def __str__(self):
+        return self.apitestname
+
+class Apistep(models.Model):
+    Apitest = models.ForeignKey('Apitest',on_delete=models.CASCADE,) # 关联接口 ID
+    apistep = models.CharField('测试步骤',max_length=100,null=True) # 测试步骤
+    apiname = models.CharField('接口名称',max_length=100) # 接口名称描述
+    apiurl = models.CharField('url 地址',max_length=200) # 地址
+    apiparamvalue = models.CharField('参数和值',max_length=800) # 参数和值
+    apimethod = models.CharField('方法',max_length=200) # 方法
+    apiresult = models.CharField('预期结果',max_length=200) # 预期结果
+    apistatus = models.BooleanField('是否通过') # 测试结果
+    create_time = models.DateTimeField('创建时间',auto_now=True) # 创建时间，自动获# 取当前时间
+    def __str__(self):
+        return self.apiname

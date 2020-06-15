@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from apitest import views
 from product import views as provews
+from webtest import views as webviews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +26,9 @@ urlpatterns = [
     path('home/', views.home),
     path('logout/', views.logout),
     path('product_manage/', provews.product_manage),
+    path('apitest_manage/', views.apitest_manage),
+    path('apistep_manage/', views.apistep_manage),
+    path('apis_manage/', views.apis_manage),
+    path('webcase_manage/', webviews.webcase_manage),
+    path('webcasestep_manage/', webviews.webcasestep_manage),
 ]
